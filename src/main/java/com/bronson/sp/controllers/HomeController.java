@@ -31,19 +31,25 @@ public class HomeController {
 	
 	//get mapping for main welcome page
 	@GetMapping("/")
-	public String welcome() {
+	public String welcome(HttpSession session, Model viewModel) {
+		Long userId = (Long)session.getAttribute("user_id");
+		viewModel.addAttribute("userLoggedIn", userId);
 		return "welcome.jsp";
 	}
 	
 	//get mapping for about page
 	@GetMapping("/about")
-	public String aboutPage() {
+	public String aboutPage(HttpSession session, Model viewModel) {
+		Long userId = (Long)session.getAttribute("user_id");
+		viewModel.addAttribute("userLoggedIn", userId);
 		return "about.jsp";
 	}
 	
 	//get mapping for the products page
 	@GetMapping("/products")
-	public String products() {
+	public String products(HttpSession session, Model viewModel) {
+		Long userId = (Long)session.getAttribute("user_id");
+		viewModel.addAttribute("userLoggedIn", userId);
 		return "allProducts.jsp";
 	}
 	
@@ -51,7 +57,7 @@ public class HomeController {
 	@GetMapping("/products/{id}")
 	public String singleProduct(@PathVariable("id") Long id, Model viewModel, HttpSession session) {
 		Long userId = (Long)session.getAttribute("user_id");
-		viewModel.addAttribute("user", userId);
+		viewModel.addAttribute("userLoggedIn", userId);
 		viewModel.addAttribute("product", this.pServ.getById(id));
 		return "viewProduct.jsp";
 	}
@@ -130,6 +136,9 @@ public class HomeController {
 		//view your profile
 		@GetMapping("/profile/{id}")
 		public String viewProfile(@PathVariable("id") Long id, HttpSession session, Model viewModel) {
+			Long userId = (Long)session.getAttribute("user_id");
+			viewModel.addAttribute("user__id", session.getAttribute("user_id"));
+			viewModel.addAttribute("userLoggedIn", userId);
 			viewModel.addAttribute("user", this.uServ.findUserById((Long)session.getAttribute("user_id")));
 			return "profile.jsp";
 		}
@@ -161,4 +170,15 @@ public class HomeController {
 					this.uServ.editUser(user);
 					return "redirect:/profile/" + userId ;
 		}
+		
+		
+		
+		
+		//shopping carts item functions from here on
+		
+		//post mapping for adding items
+		
+		//get mapping for full shopping cart
+		
+		
 }

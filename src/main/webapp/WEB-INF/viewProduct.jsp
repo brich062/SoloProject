@@ -21,7 +21,7 @@
 		</div>
 		<div class="cartAdding">
 		<c:choose>
-			<c:when test="${user != null}">
+			<c:when test="${userLoggedIn != null}">
 				<c:choose >
 					<c:when test="${!product.likes.contains(user)}">
 						<a href="/like/${product.id}">Like</a>
