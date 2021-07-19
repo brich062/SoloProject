@@ -29,6 +29,8 @@ public class Product {
 	private Date createdAt;
 	private Date updatedAt;
 	
+	//shopping cart relationship
+	
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(
 			name="userlikes",

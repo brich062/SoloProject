@@ -44,6 +44,8 @@ public class User {
 	private Date createdAt;
 	private Date updatedAt;
 	
+	//shopping cart relationship
+	
 	
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(

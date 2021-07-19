@@ -29,10 +29,36 @@ public class HomeController {
 	@Autowired
 	private ProductService pServ;
 	
+	//get mapping for main welcome page
+	@GetMapping("/")
+	public String welcome() {
+		return "welcome.jsp";
+	}
+	
+	//get mapping for about page
+	@GetMapping("/about")
+	public String aboutPage() {
+		return "about.jsp";
+	}
+	
+	//get mapping for the products page
+	@GetMapping("/products")
+	public String products() {
+		return "allProducts.jsp";
+	}
+	
+	//get mapping for individual product
+	@GetMapping("/products/{id}")
+	public String singleProduct(@PathVariable("id") Long id, Model viewModel) {
+		viewModel.addAttribute("product", this.pServ.getById(id));
+		return "viewProduct.jsp";
+	}
+	
+	
 	//get mapping for login/register page
 		@GetMapping("/loginregister")
 		public String logReg(@ModelAttribute("user") User user) {
-			return "logReg.jsp";
+			return "loginReg.jsp";
 		}
 		
 		//post mapping for login
@@ -43,13 +69,13 @@ public class HomeController {
 				//login the user
 				User user = this.uServ.findByEmail(email);
 				session.setAttribute("user_id", user.getId());
-				return "redirect:/dashboard";
+				return "redirect:/";
 				
 			}
 			
 			//give the custom message if credentials don't match database
 			redAttr.addFlashAttribute("errors", "Invalid Credentials");
-			return "redirect:/";
+			return "redirect:/loginregister";
 		}
 		
 		//post mapping for register
@@ -59,13 +85,13 @@ public class HomeController {
 			validator.validate(user, result);
 			//checks for errors and reloads page with message
 			if (result.hasErrors()) {
-				return "logReg.jsp";
+				return "loginReg.jsp";
 			}
 			//saves the user
 			User newUser = this.uServ.registerUser(user); 
 			//set the user to the session as if they logged in
 			session.setAttribute("user_id", newUser.getId());
-			return "redirect:/dashboard";
+			return "redirect:/";
 		}
 		
 		//get mapping for logout
@@ -77,8 +103,12 @@ public class HomeController {
 		}
 		
 		
-		
-		
+		//view product page
+		@GetMapping("/product/{id}")
+		public String productView(@PathVariable("id") Long id, Model viewModel) {
+			viewModel.addAttribute("product", this.pServ.getById(id));
+			return "viewProduct.jsp";
+		}
 		
 		
 		//get mapping for a like
@@ -88,7 +118,7 @@ public class HomeController {
 			Long userId = (Long)session.getAttribute("user_id");
 			User liker = this.uServ.findUserById(userId);
 			this.uServ.likeMe(liker, productLiked);
-			return "redirect:/dashboard";
+			return "redirect:/product/" + productLiked;
 		}
 		
 		//get mapping for unlike
@@ -98,33 +128,42 @@ public class HomeController {
 			Long userId = (Long)session.getAttribute("user_id");
 			User liker = this.uServ.findUserById(userId);
 			this.uServ.unlikeMe(liker, productLiked);
-			return "redirect:/dashboard";
+			return "redirect:/product/" + productLiked;
 		}
 		
-		//delete the entry if you are the user
+		//view your profile
+		@GetMapping("/profile/{id}")
+		public String viewProfile(@PathVariable("id") Long id, HttpSession session, Model viewModel) {
+			Long userId = (Long)session.getAttribute("user_id");
+			viewModel.addAttribute("user", userId);
+			return "profile.jsp";
+		}
+		
+		//delete your profile
 		@GetMapping("/delete/{id}")
 		public String delteUser(@PathVariable("id") Long id) {
 			this.uServ.deleteUser(id);
-			return "redirect:/dashboard";
+			return "redirect:/";
 		}
 		
-		//get mapping for edit entry if you are the user
+		//get mapping for edit profile
 		@GetMapping("/edit/{id}")
 		public String getEditPage(@ModelAttribute("user") User user, @PathVariable("id") Long id, Model viewModel, HttpSession session) {
 			viewModel.addAttribute("user__id", session.getAttribute("user_id"));
-			return "editEntry.jsp";
+			return "editProfile.jsp";
 		}
 		
-		//post mapping for edit of entry
+		//post mapping for edit of profile info
 		@PostMapping("/edit/{id}")
 		public String editEntry(@Valid @ModelAttribute("user") User user, BindingResult result, @PathVariable("id") Long id, Model viewModel, HttpSession session) {
+				Long userId = (Long)session.getAttribute("user_id");
 			//check for errors and re-render page if there are errors
 					if(result.hasErrors()) {
 						viewModel.addAttribute("user__id", session.getAttribute("user_id"));
-						return "editEntry.jsp";
+						return "editProfile.jsp";
 					}
 					//save the new entry
 					this.uServ.editUser(user);
-					return "redirect:/dashboard";
+					return "redirect:/profile/" + userId ;
 		}
 }
