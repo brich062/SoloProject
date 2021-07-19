@@ -6,14 +6,14 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>My Profile</title>
 </head>
 <body>
 <t:HeaderNavbarFooter>
-	<div class="jumbotron">
-		<h2 class="display-3">Hello <c:out item="${user.firstName}"/>!</h2>
-		<p class="lead">Last Name: <c:out item="${user.lastName}"/></p>
-		<p class="lead">Email: <c:out item="${user.email}"/></p>
+	<div class="jumbotron desc">
+		<h2 class="display-3">Hello <c:out value="${user.firstName}"/> !</h2>
+		<p class="lead">Last Name: <c:out value="${user.lastName}"/></p>
+		<p class="lead">Email: <c:out value="${user.email}"/></p>
 		<hr class="my-5">
 		<a class="btn btn-primary" href="/edit/${user.id}">Edit Profile</a>
 		<a class="btn btn-warning" href="/delete/${user.id}">Delete Profile</a>

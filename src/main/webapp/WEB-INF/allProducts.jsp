@@ -12,27 +12,27 @@
 </head>
 <body>
 <t:HeaderNavbarFooter>
-	<div class="container">
+	<div class="container" id="prodCont">
 		<h3><a href="/products/${1}">Ultimate Full Body</a></h3>
 		<img src="<c:url value="WEB-INF/Resources/Images/fullBody"/>"/>
 		<p>Price: 19.99</p>	
 	</div>
-	<div class="container">
+	<div class="container" id="prodCont">
 		<h3><a href="/products/${2}">Chest Builder</a></h3>
 		<img src="<c:url value="WEB-INF/Resources/Images/chest"/>"/>
 		<p>Price: 19.99</p>	
 	</div>
-	<div class="container">
+	<div class="container" id="prodCont">
 		<h3><a href="/products/${3}">Titan Legs</a></h3>
 		<img src="<c:url value="WEB-INF/Resources/Images/squat"/>"/>
 		<p>Price: 19.99</p>	
 	</div>
-	<div class="container">
+	<div class="container" id="prodCont">
 		<h3><a href="/products/${4}">Cobra Back</a></h3>
 		<img src="<c:url value="WEB-INF/Resources/Images/back"/>"/>
 		<p>Price: 19.99</p>	
 	</div>
-	<div class="container">
+	<div class="container" id="prodCont">
 		<h3><a href="/products/${5}">Nutrition Guide</a></h3>
 		<img src="<c:url value="WEB-INF/Resources/Images/nutrition"/>"/>
 		<p>Price: 9.99</p>	

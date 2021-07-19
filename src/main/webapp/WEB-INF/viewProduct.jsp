@@ -13,19 +13,26 @@
 </head>
 <body>
 <t:HeaderNavbarFooter>
-	<div class="container">
+	<div class="container desc">
 		<h1>${product.name}</h1>
 		<h3>Description</h3>
 		<div>
 			<p><c:out value="${product.description}"/></p>
 		</div>
 		<div class="cartAdding">
-		<c:choose >
-			<c:when test="${!product.likes.contains(user)}">
-				<a href="/like/${product.id}">Like</a>
+		<c:choose>
+			<c:when test="${user != null}">
+				<c:choose >
+					<c:when test="${!product.likes.contains(user)}">
+						<a href="/like/${product.id}">Like</a>
+					</c:when>
+					<c:otherwise>
+						<a href="/unlike/${product.id}">Unlike</a>
+					</c:otherwise>
+				</c:choose>
 			</c:when>
 			<c:otherwise>
-				<a href="/unlike/${product.id}">Unlike</a>
+				<!-- Left Blank to eliminate choice if not logged in -->
 			</c:otherwise>
 		</c:choose>
 

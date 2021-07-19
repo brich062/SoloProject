@@ -12,7 +12,7 @@
 </head>
 <body>
 <t:HeaderNavbarFooter>
-	<div class="container">
+	<div class="container desc">
 		<div class="form-group">
 			<h3>Login</h3>
 			<p><c:out value="${errors}"/></p>

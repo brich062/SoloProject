@@ -11,7 +11,7 @@
 </head>
 <body>
 <t:HeaderNavbarFooter>
-	<div class="jumbotron">
+	<div class="jumbotron desc">
 		<h1 class="display-4">Welcome to Valhalla Fitness</h1>
 		<p class="lead">Where you will learn to conquer your fitness goals like a warrior!</p>
 	</div>

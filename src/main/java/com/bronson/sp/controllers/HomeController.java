@@ -49,7 +49,9 @@ public class HomeController {
 	
 	//get mapping for individual product
 	@GetMapping("/products/{id}")
-	public String singleProduct(@PathVariable("id") Long id, Model viewModel) {
+	public String singleProduct(@PathVariable("id") Long id, Model viewModel, HttpSession session) {
+		Long userId = (Long)session.getAttribute("user_id");
+		viewModel.addAttribute("user", userId);
 		viewModel.addAttribute("product", this.pServ.getById(id));
 		return "viewProduct.jsp";
 	}
@@ -103,39 +105,32 @@ public class HomeController {
 		}
 		
 		
-		//view product page
-		@GetMapping("/product/{id}")
-		public String productView(@PathVariable("id") Long id, Model viewModel) {
-			viewModel.addAttribute("product", this.pServ.getById(id));
-			return "viewProduct.jsp";
-		}
-		
-		
 		//get mapping for a like
 		@GetMapping("/like/{id}")
-		public String likeIdea(@PathVariable("id") Long id, HttpSession session) {
+		public String likeIdea(@PathVariable("id") Long id, HttpSession session, Product product) {
 			Product productLiked = this.pServ.getById(id);
+			Long prodId = product.getId();			
 			Long userId = (Long)session.getAttribute("user_id");
 			User liker = this.uServ.findUserById(userId);
 			this.uServ.likeMe(liker, productLiked);
-			return "redirect:/product/" + productLiked;
+			return "redirect:/products/" + prodId;
 		}
 		
 		//get mapping for unlike
 		@GetMapping("/unlike/{id}")
-		public String unlikeIdea(@PathVariable("id") Long id, HttpSession session) {
+		public String unlikeIdea(@PathVariable("id") Long id, HttpSession session, Product product) {
 			Product productLiked = this.pServ.getById(id);
+			Long prodId = product.getId();
 			Long userId = (Long)session.getAttribute("user_id");
 			User liker = this.uServ.findUserById(userId);
 			this.uServ.unlikeMe(liker, productLiked);
-			return "redirect:/product/" + productLiked;
+			return "redirect:/products/" + prodId;
 		}
 		
 		//view your profile
 		@GetMapping("/profile/{id}")
 		public String viewProfile(@PathVariable("id") Long id, HttpSession session, Model viewModel) {
-			Long userId = (Long)session.getAttribute("user_id");
-			viewModel.addAttribute("user", userId);
+			viewModel.addAttribute("user", this.uServ.findUserById((Long)session.getAttribute("user_id")));
 			return "profile.jsp";
 		}
 		

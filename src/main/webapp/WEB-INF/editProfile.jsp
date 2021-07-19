@@ -11,7 +11,7 @@
 </head>
 <body>
 <t:HeaderNavbarFooter>
-	<div class="container">
+	<div class="container desc">
 		<h3>Edit Your Information</h3>
 		<div class="form-group">
 			<form:form method="post" action="/edit/${user.id}" modelAttribute="user">
@@ -40,7 +40,7 @@
 					<form:errors path="confirmPassword"/>
 					<form:input type="password" path="confirmPassword"/>
 				</p>
-				<button class="btn btn-success">Register</button>
+				<button class="btn btn-success">Change Info</button>
 			</form:form>
 		</div>
 	</div>

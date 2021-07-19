@@ -1,7 +1,22 @@
 @charset "ISO-8859-1";
 
-.container {
+.hnf {
+	/* background-color: black;*/	
+	background-image: url("/images/collage.jpg");
+	background-repeat: no-repeat;
+	background-size: 1375px;
+}
+
+#prodCont {
 	background-color: black;
+}
+
+.desc {
+	background-color: black;
+	padding-bottom: 25px;
+}
+.jBody {
+	margin-bottom: 350px;
 }
 
 .main {
@@ -12,14 +27,17 @@
 .slogan {
 	display:flex;
 	justify-content: start;
+	
 }
 
 
 .footer {
+	background-color: black;
 	margin-top: 150px;
 	padding-left: 500px;
 	display: flex;
 	justify-content: space-evenly;
+	flex-grow: 1;
 }
 
 .footer a{
@@ -50,6 +68,9 @@ a {
 	text-decoration: none;
 	color: gold;
 }
+
+
+
 /* For the base navbar */
 .navbar {
   overflow: hidden;

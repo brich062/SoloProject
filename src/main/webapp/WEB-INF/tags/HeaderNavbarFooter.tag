@@ -6,31 +6,15 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 <!-- add css file below here -->
 <link rel="stylesheet" href="<c:url value="/CSS/homenavbarfooterSTYLE.css"/>">
-<script type="text/javascript" src="JavaScript/dropdownMenu.js"/></script>
-<script type="text/javascript">
-/* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
+<!-- <script type="text/javascript" src="JS/dropdownMenu.js"/></script> -->
 
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(e) {
-  if (!e.target.matches('.dropbtn')) {
-  var myDropdown = document.getElementById("myDropdown");
-    if (myDropdown.classList.contains('show')) {
-      myDropdown.classList.remove('show');
-    }
-  }
-}
-</script>
 
 </head>
-<body class="container">
+<body class="container hnf">
 	
 	<div class="container">
 		<div class="slogan">
-			<img src="<c:url value="WEB-INF/Resources/Images/Vulk.png"/>"/>
+			<img src="<c:url value="/Resources/Images/Vulk.png"/>"/>
 			<h1 class="main">Conquer!</h1>
 		</div>
 			<div>
@@ -42,8 +26,9 @@ window.onclick = function(e) {
   						</button>
   						<div class="dropdown-content" id="myDropdown">
   							<c:choose>
-    							<c:when test="${user.id != null }">
+    							<c:when test="${user != null}">
       								<a class="dropdown-item" href="/profile/${user.id}">My Profile</a>
+      								<a class="dropdown-item" href="/logout">Log Out</a>
       							</c:when>
       							<c:otherwise>
       								<a class="dropdown-item" href="/loginregister">Login/Register</a>
@@ -81,17 +66,34 @@ window.onclick = function(e) {
   			</div>
   			
 	</div>
-	
+	<div class="jBody">
 	
 	<jsp:doBody/>
 	
-	
+	</div>
 	<div class="footer" class="container">
 		<div class="container" id="content">
 			<a class="footItem" href="/about">About Us</a>
 			<a class="footItem" href="https://www.instagram.com/bronson_the_odinson/"><img src="<c:url value="/WEB-INF/Resources/Images/instaLogo"/>"/></a>
 		</div>
 	</div>
+<script type="text/javascript">
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+  var myDropdown = document.getElementById("myDropdown");
+    if (myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
+    }
+  }
+}
+</script>
 </body>
 
 </html>

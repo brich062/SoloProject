@@ -11,7 +11,7 @@
 </head>
 <body>
 <t:HeaderNavbarFooter>
-	<div class="container"> 
+	<div class="container desc"> 
 		<h1>About Us</h1>
 		<hr>
 		<p>This is all about us, this is so much content...man...I can barely finish there so much to read here.</p>
