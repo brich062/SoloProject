@@ -14,27 +14,27 @@
 <t:HeaderNavbarFooter>
 	<div class="container" id="prodCont">
 		<h3><a href="/products/${1}">Ultimate Full Body</a></h3>
-		<img src="<c:url value="WEB-INF/Resources/Images/fullBody"/>"/>
+		<img src="<c:url value="images/fullBody.png"/>" width= 120px/>
 		<p>Price: 19.99</p>	
 	</div>
 	<div class="container" id="prodCont">
 		<h3><a href="/products/${2}">Chest Builder</a></h3>
-		<img src="<c:url value="WEB-INF/Resources/Images/chest"/>"/>
+		<img src="<c:url value="images/chest.jpg"/>" width= 120px/>
 		<p>Price: 19.99</p>	
 	</div>
 	<div class="container" id="prodCont">
 		<h3><a href="/products/${3}">Titan Legs</a></h3>
-		<img src="<c:url value="WEB-INF/Resources/Images/squat"/>"/>
+		<img src="<c:url value="images/squat.jpg"/>" width= 120px/>
 		<p>Price: 19.99</p>	
 	</div>
 	<div class="container" id="prodCont">
 		<h3><a href="/products/${4}">Cobra Back</a></h3>
-		<img src="<c:url value="WEB-INF/Resources/Images/back"/>"/>
+		<img src="<c:url value="images/back.jpg"/>" width= 120px/>
 		<p>Price: 19.99</p>	
 	</div>
 	<div class="container" id="prodCont">
 		<h3><a href="/products/${5}">Nutrition Guide</a></h3>
-		<img src="<c:url value="WEB-INF/Resources/Images/nutrition"/>"/>
+		<img src="<c:url value="images/nutrition.jpg"/>" width= 120px/>
 		<p>Price: 9.99</p>	
 	</div>
 </t:HeaderNavbarFooter>

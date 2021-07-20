@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -19,6 +20,8 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
@@ -45,6 +48,10 @@ public class User {
 	private Date updatedAt;
 	
 	//shopping cart relationship
+	@OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+	@JsonIgnore
+	private List<CartItem> cartItems;
+	
 	
 	
 	@ManyToMany(fetch=FetchType.LAZY)
@@ -56,6 +63,14 @@ public class User {
 	private List<User> likes;
 
 	
+	public List<CartItem> getCartItems() {
+		return cartItems;
+	}
+
+	public void setCartItems(List<CartItem> cartItems) {
+		this.cartItems = cartItems;
+	}
+
 	@PrePersist
 	public void createdOn() {
 		this.createdAt = new Date();

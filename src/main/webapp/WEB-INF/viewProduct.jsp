@@ -23,11 +23,11 @@
 		<c:choose>
 			<c:when test="${userLoggedIn != null}">
 				<c:choose >
-					<c:when test="${!product.likes.contains(user)}">
-						<a href="/like/${product.id}">Like</a>
+					<c:when test="${product.likes.contains(userLoggedIn)}">
+						<a href="/unlike/${product.id}">Unlike</a>
 					</c:when>
 					<c:otherwise>
-						<a href="/unlike/${product.id}">Unlike</a>
+						<a href="/like/${product.id}">Like</a>
 					</c:otherwise>
 				</c:choose>
 			</c:when>

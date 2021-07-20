@@ -9,8 +9,8 @@
 <body class="container hnf">
 	<div class="container">
 		<div class="slogan">
-			<img src="<c:url value="/Resources/Images/Vulk.png"/>"/>
-			<h1 class="main">Conquer!</h1>
+			<img src="<c:url value="/images/Vulk.png"/>" width= 75px;/>
+			<h1 class="main">Conquer Your Goals!</h1>
 		</div>
 			<div>
 				<div class="navbar navbar-dar bg-dark">
@@ -61,7 +61,7 @@
 	<div class="footer" class="container">
 		<div class="container" id="content">
 			<a class="footItem" href="/about">About Us</a>
-			<a class="footItem" href="https://www.instagram.com/bronson_the_odinson/"><img src="<c:url value="/WEB-INF/Resources/Images/instaLogo.png"/>"/></a>
+			<a class="footItem" href="https://www.instagram.com/bronson_the_odinson/"><img src="<c:url value="images/instaBlack.png"/>" width= 50px/></a>
 		</div>
 	</div>
 	

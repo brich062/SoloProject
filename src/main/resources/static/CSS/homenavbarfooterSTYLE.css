@@ -3,7 +3,7 @@
 .hnf {
 	/* background-color: black;*/	
 	background-image: url("/images/collage.jpg");
-	background-repeat: no-repeat;
+	background-repeat: repeat;
 	background-size: 1375px;
 }
 
