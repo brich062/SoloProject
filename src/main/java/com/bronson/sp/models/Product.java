@@ -29,8 +29,6 @@ public class Product {
 	private String name;
 	private String description;
 	private Double price;
-	private Date createdAt;
-	private Date updatedAt;
 	
 	//shopping cart relationship
 	@OneToMany(mappedBy="product", fetch = FetchType.LAZY)
@@ -46,15 +44,7 @@ public class Product {
 	private List<User> likes;
 	
 	
-	@PrePersist
-	public void createdOn() {
-		this.createdAt = new Date();
-	}
 	
-	@PreUpdate
-	public void updatedOn() {
-		this.updatedAt = new Date();
-	}
 	
 	public Product() {}
 
@@ -90,21 +80,6 @@ public class Product {
 		this.price = price;
 	}
 
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
-	}
 
 	public List<User> getLikes() {
 		return likes;

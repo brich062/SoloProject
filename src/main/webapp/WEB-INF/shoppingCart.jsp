@@ -20,10 +20,10 @@
 					<tr>
 						<td>${item.product.name}</td>
 						<td>${item.product.price}</td>
-						<td><form method="get" action="/delete/${item.id}">
+						<%-- <td><form method="get" action="/delete/${item.id}">
 						<input type="hidden" name="_method" value="Delete"/>
 						<button class="btn btn-danger">Delete</button>
-						</form></td>
+						</form></td> --%>
 					</tr>
 				</c:forEach>
 			</tbody>

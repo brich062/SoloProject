@@ -3,6 +3,7 @@ package com.bronson.sp.models;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -48,13 +49,13 @@ public class User {
 	private Date updatedAt;
 	
 	//shopping cart relationship
-	@OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="user", fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	@JsonIgnore
 	private List<CartItem> cartItems;
 	
 	
 	
-	@ManyToMany(fetch=FetchType.LAZY)
+	@ManyToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinTable(
 			name="userlikes",
 			joinColumns = @JoinColumn(name="user_id"),
