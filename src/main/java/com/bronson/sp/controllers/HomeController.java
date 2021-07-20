@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.bronson.sp.models.CartItem;
 import com.bronson.sp.models.Product;
 import com.bronson.sp.models.User;
+import com.bronson.sp.services.CartItemService;
 import com.bronson.sp.services.ProductService;
 import com.bronson.sp.services.UserService;
 import com.bronson.sp.validators.UserValidator;
@@ -28,6 +30,8 @@ public class HomeController {
 	private UserValidator validator;
 	@Autowired
 	private ProductService pServ;
+	@Autowired
+	private CartItemService cServ;
 	
 	//get mapping for main welcome page
 	@GetMapping("/")
@@ -147,7 +151,7 @@ public class HomeController {
 		@GetMapping("/delete/{id}")
 		public String delteUser(@PathVariable("id") Long id) {
 			this.uServ.deleteUser(id);
-			return "redirect:/";
+			return "redirect:/logout";
 		}
 		
 		//get mapping for edit profile
@@ -174,11 +178,36 @@ public class HomeController {
 		
 		
 		
-		//shopping carts item functions from here on
 		
 		//post mapping for adding items
+		@PostMapping("/additem/{id}")
+		public String addItemToCart(@PathVariable("id") Long id, HttpSession session) {
+			Product productAdded = this.pServ.getById(id);
+			Long userId = (Long)session.getAttribute("user_id");
+			User shopper = this.uServ.findUserById(userId);
+			this.cServ.addToCart(productAdded, shopper);
+			return "redirect:/cart";
+		}
+		
+		//post mapping for deleting an item
+		@GetMapping("/cart/delete/{id}")
+		public String deleteCartItem(@PathVariable("id") Long id, HttpSession session, CartItem cartItem) {
+			/* Long userId = (Long)session.getAttribute("user_id"); */
+			Long itemDelete = cartItem.getId();
+			this.cServ.deleteFromCart(itemDelete);
+			return "redirect:/cart";
+		}
+		
+		
 		
 		//get mapping for full shopping cart
-		
+		@GetMapping("/cart")
+		public String fullCart(HttpSession session, Model viewModel) {
+			Long userId = (Long)session.getAttribute("user_id");
+			viewModel.addAttribute("userLoggedIn", userId);
+			User shopper = this.uServ.findUserById(userId);
+			viewModel.addAttribute("allItems", this.cServ.getAll(shopper) );
+			return "shoppingCart.jsp";
+		}
 		
 }

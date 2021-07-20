@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="cartitems")
@@ -82,6 +83,9 @@ public class CartItem {
 		this.product = product;
 	}
 
-	
+	@Transient
+	public Double getSubtotal() {
+		return this.product.getPrice();
+	}
 
 }

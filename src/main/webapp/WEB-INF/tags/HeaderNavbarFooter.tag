@@ -26,29 +26,13 @@
       							</c:otherwise>
       						</c:choose>
       						<a href="/products">Shop</a>
-  					<div>  
-  				<ul class="nav navbar-nav navbar-right">
-       				<li class="dropdown">
-          			<a href="/shoppingcart" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="fa fa-gift bigicon"></span><%-- <c:out items="${cart.quantity}"/> --%>- Items<span class="caret"></span></a>
-          			<ul class="dropdown-menu dropdown-cart" role="menu">
-              			<li>
-                  			<span class="item">
-                    			<span class="item-left">
-                        			<img src="http://www.prepbootstrap.com/Content/images/template/menucartdropdown/item_1.jpg" alt="" />
-                        			<span class="item-info">
-                        	    		<span><%-- <c:out item="${cart.product.name}"/> --%></span>
-                            			<span><%-- <c:out item="${cart.product.price}"/> --%></span>
-                        			</span>
-                    			</span>
-                    			<span class="item-right">
-                        			<button class="btn btn-danger  fa fa-close"></button>
-                    			</span>
-                			</span>
-              			</li>
-              		</ul>
-              		</li>
-              </ul>
-           </div>
+      						<c:choose>
+      							<c:when test="${userLoggedIn != null}">
+      								<a href="/cart"><img src="<c:url value="images/Cart.png"/>" width= 25px/></a>
+      							</c:when>
+      							<c:otherwise>
+      							</c:otherwise>
+      						</c:choose>
 				</div>
   			</div>
   			</div>
