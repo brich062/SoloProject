@@ -63,7 +63,8 @@ public class HomeController {
 		Long userId = (Long)session.getAttribute("user_id");
 		viewModel.addAttribute("userLoggedIn", userId);
 		viewModel.addAttribute("product", this.pServ.getById(id));
-		return "viewProduct.jsp";
+		System.out.println(this.pServ.getById(id));
+		return "prductView.jsp";
 	}
 	
 	
@@ -157,6 +158,8 @@ public class HomeController {
 		//get mapping for edit profile
 		@GetMapping("/edit/{id}")
 		public String getEditPage(@ModelAttribute("user") User user, @PathVariable("id") Long id, Model viewModel, HttpSession session) {
+			Long userId = (Long)session.getAttribute("user_id");
+			viewModel.addAttribute("userLoggedIn", userId);
 			viewModel.addAttribute("user__id", session.getAttribute("user_id"));
 			return "editProfile.jsp";
 		}

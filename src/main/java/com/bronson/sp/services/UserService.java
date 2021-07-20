@@ -7,8 +7,10 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bronson.sp.models.CartItem;
 import com.bronson.sp.models.Product;
 import com.bronson.sp.models.User;
+import com.bronson.sp.repositories.CartItemRepository;
 import com.bronson.sp.repositories.ProductRepository;
 import com.bronson.sp.repositories.UserRepository;
 
@@ -18,6 +20,10 @@ public class UserService {
 	private UserRepository uRepo;
 	@Autowired
 	private ProductRepository pRepo;
+	@Autowired
+	private CartItemRepository cRepo;
+	
+	
 	
 	// register user and hash their password
     public User registerUser(User user) {
@@ -80,5 +86,7 @@ public class UserService {
     	List<User> allUsers = product.getLikes();
     	allUsers.remove(user);
     	this.pRepo.save(product);
-    } 
+    }
+    
+    
 }

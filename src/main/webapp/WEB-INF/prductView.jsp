@@ -15,7 +15,7 @@
 		<h1>${product.name}</h1>
 		<h3>Description</h3>
 		<div>
-			<p><c:out value="${product.description}"/></p>
+			<p>${product.description}</p>
 		</div>
 		<div class="cartAdding">
 		<c:choose>

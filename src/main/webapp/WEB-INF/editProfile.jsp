@@ -30,16 +30,6 @@
 					<form:errors path="email"/>
 					<form:input path="email"/>
 				</p>
-				<p>
-					<form:label path="password">Password: </form:label>
-					<form:errors path="password"/>
-					<form:input type="password" path="password"/>
-				</p>
-				<p>
-					<form:label path="confirmPassword">Confirm Password: </form:label>
-					<form:errors path="confirmPassword"/>
-					<form:input type="password" path="confirmPassword"/>
-				</p>
 				<button class="btn btn-success">Change Info</button>
 			</form:form>
 		</div>
