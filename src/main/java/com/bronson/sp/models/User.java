@@ -61,7 +61,7 @@ public class User {
 			joinColumns = @JoinColumn(name="user_id"),
 			inverseJoinColumns = @JoinColumn(name="product_id")
 			)
-	private List<User> likes;
+	private List<Product> likes;
 
 	
 	public List<CartItem> getCartItems() {
@@ -148,11 +148,11 @@ public class User {
 		this.updatedAt = updatedAt;
 	}
 
-	public List<User> getLikes() {
+	public List<Product> getLikes() {
 		return likes;
 	}
 
-	public void setLikes(List<User> likes) {
+	public void setLikes(List<Product> likes) {
 		this.likes = likes;
 	}
 	
